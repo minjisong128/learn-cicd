@@ -12,6 +12,7 @@ spec:
   replicas: 1
   ##############################
   minReadySeconds: 5
+  progressDeadlineSeconds: 1800  
   strategy:
     type: RollingUpdate
     rollingUpdate:
