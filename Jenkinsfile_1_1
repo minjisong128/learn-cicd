@@ -51,7 +51,8 @@ pipeline {
         /****************** Don't Edit This Area *********************/
         stage("Infra Check") {
             steps {
-                script {
+                lock('InfraDeployLock') {
+                    script {
                     println("Deploy to Production Environment")
                     sh("""
                         cd ./iac/cicd-edu-cluster
@@ -59,6 +60,7 @@ pipeline {
                         terraform apply -var-file="configurations/prod-config.tfvars" -auto-approve -no-color
                         gcloud container clusters list
                     """)
+                    }
                 }
             }
         }
