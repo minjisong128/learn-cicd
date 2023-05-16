@@ -69,17 +69,19 @@ pipeline {
         /****************** Don't Edit This Area *********************/
         stage("Infra Check") {
             steps {
-                script {
-                    println("Infra Check")
-                    sh("""
-			            cd ./iac/cicd-edu-cluster
-                        terraform init -backend-config="prefix=dev" -no-color
-                        terraform apply -var-file="configurations/dev-config.tfvars" -auto-approve -no-color
-                        gcloud container clusters list
-                    """)
+                lock('InfraDeployLock') {
+                    script {
+                        println("Infra Check")
+                        sh("""
+                            cd ./iac/cicd-edu-cluster
+                            terraform init -backend-config="prefix=dev" -no-color
+                            terraform apply -var-file="configurations/dev-config.tfvars" -auto-approve -no-color
+                            gcloud container clusters list
+                        """)
+                    }
                 }
             }
-        }
+        }        
         /*************************************************************/
 
         /*************** 2-1-3. Kubernetes Deploy ********************/
