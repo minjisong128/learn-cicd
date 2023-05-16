@@ -61,14 +61,16 @@ pipeline {
         /****************** Don't Edit This Area *********************/
         stage("Infra Check") {
             steps {
-                script {
-                    println("Infra Check")
-                    sh("""
-                        gcloud container clusters list
-                        cd ./iac/cicd-edu-cluster
-                        terraform init -backend-config="prefix=${env.environment}" -no-color
-                        terraform apply -var-file="configurations/${env.environment}-config.tfvars" -auto-approve -no-color
-                    """)
+                lock('InfraDeployLock') {
+                    script {
+                        println("Infra Check")
+                        sh("""
+                            cd ./iac/cicd-edu-cluster
+                            terraform init -backend-config="prefix=${env.environment}" -no-color
+                            terraform apply -var-file="configurations/${env.environment}-config.tfvars" -auto-approve -no-color
+                            gcloud container clusters list
+                        """)
+                    }
                 }
             }
         }
