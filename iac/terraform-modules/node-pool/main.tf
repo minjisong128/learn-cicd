@@ -16,5 +16,9 @@ resource "google_container_node_pool" "application_nodepool" {
     "https://www.googleapis.com/auth/monitoring",
     ]
   }
+
+  lifecycle {
+    ignore_changes = [node_config[0].resource_labels, node_config[0].kubelet_config]
+  }
 } 
 
