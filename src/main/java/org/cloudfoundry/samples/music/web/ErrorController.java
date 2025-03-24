@@ -19,11 +19,11 @@ public class ErrorController {
     public void fillHeap() {
         logger.info("Filling heap with junk, to initiate a crash");
 	//=======================================================
-        //TODO 2-2-4. 정적분석 Quality Gate Fail 소스
+        // 2-2-4. 정적분석 Quality Gate Fail 소스
         //무한루프를 제거하세요.
-        while (true) {
-            junk.add(new int[9999999]);
-        }
+        //while (true) {
+        //    junk.add(new int[9999999]);
+        //}
 	//=======================================================
     }
 
