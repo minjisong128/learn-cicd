@@ -83,8 +83,8 @@ dependencies {
 
     // Testing
     //=======================================================================
-    //TODO 2-2-2. 테스트컴파일 시, junit dependency 추가
-
+    // 2-2-2. 테스트컴파일 시, junit dependency 추가
+    testImplementation "junit:junit"
 
     //=======================================================================
     testImplementation "org.springframework.boot:spring-boot-starter-test"
