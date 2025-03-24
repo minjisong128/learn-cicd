@@ -52,10 +52,16 @@ pipeline {
 
 
         /*************** 2-2-4. 정적분석(SonarQube) Quality Gate 적용 ******************/
-        //TODO 2-2-4. SonarQube Quality Gate 결과를 가져오는 stage 추가
-        //1) stage 추가:SonarQube Quality Gate
-        //2) timeout setting & waitForQualityGate setting
-
+        // SonarQube Quality Gate 결과를 가져오는 stage 추가
+        stage("SonarQube Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'MINUTES') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
         /*********************************************************************************/
 
 
