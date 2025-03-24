@@ -40,10 +40,14 @@ pipeline {
         /*************************************************************/
 
         /*************** 2-2-3. 정적분석(SonarQube) 실행 ******************/
-        //TODO 2-2-3. 정적분석 stage 추가
-        //1) stage 추가:SonarQube analysis
-        //2) ./gradlew sonarqube 실행
-
+        // 정적분석 stage 추가
+        stage("SonarQube analysis") {
+            steps {
+                withSonarQubeEnv("sonarqube") {
+                    sh './gradlew sonarqube'
+                }
+            }
+        }
         /*********************************************************************/
 
 

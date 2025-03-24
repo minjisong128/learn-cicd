@@ -13,8 +13,8 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 
 	//=======================================================================
-	//TODO 2-2-3. 1)sonarqube-gradle-plugin classpath 추가
-
+	// 2-2-3. 1)sonarqube-gradle-plugin classpath 추가
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.4.0.2513")
 
 	//=======================================================================
 
@@ -30,9 +30,8 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 //=======================================================================
-//TODO 2-2-3. 2)sonarqube plugin apply
-
-
+// 2-2-3. 2)sonarqube plugin apply
+apply plugin: 'org.sonarqube'
 //=======================================================================
 
 
