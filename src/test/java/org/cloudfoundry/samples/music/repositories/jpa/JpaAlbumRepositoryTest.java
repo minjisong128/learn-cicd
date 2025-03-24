@@ -49,9 +49,9 @@ public class JpaAlbumRepositoryTest {
 		printAlbum(name.getMethodName(),actual);
 
 		//TODO 2-2-2. 1)JUnit 단위테스트 실패 코드
-		assertThat(actual.getAlbumId()).isEqualTo(null);
+		//assertThat(actual.getAlbumId()).isEqualTo(null);
 		//TODO 2-2-2. 2)JUnit 단위테스트 성공 코드
-		//assertThat(actual.getAlbumId()).isEqualTo(album.getAlbumId());
+		assertThat(actual.getAlbumId()).isEqualTo(album.getAlbumId());
 
 	}
 // =========================================================================
